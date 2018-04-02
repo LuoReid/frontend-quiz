@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Cat Clicker</title>
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+
+<body>
+  <figure class="cat">
+    <figcaption class="cat-clicks"></figcaption>
+    <img src="image/unnamed.jpg" alt="可爱猫咪">
+  </figure>
+  <script>
+  let img = document.querySelector('img');
+  img.addEventListener('click', function() {
+    let clicks = document.querySelector('.cat-clicks');
+    clicks.innerHTML = (clicks.innerHTML - 0) + 1;
+  }, false);
+  </script>
+</body>
+
+</html>
