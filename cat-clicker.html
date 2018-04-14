@@ -8,13 +8,29 @@
 </head>
 
 <body>
-  <ul class="cat-list"></ul>
-  <main>
+  <aside>
+    <ul class="cat-list"></ul>
+  </aside>
+  <main class="cat-info">
     <figure class="cat">
       <figcaption><span class="cat-name"></span> : <span class="cat-count"></span></figcaption>
       <img class="cat-img" src="image/back-cat.jpg" alt="可爱猫咪">
     </figure>
   </main>
+  <section id="admin" class="hide">
+    <button id="btnOpen" class="button-admin">Admin</button>
+    <section id="formAdmin" class="hide">
+      name:
+      <input type="text" name="name" id="input-name">
+      <br> src:
+      <input type="text" name="src" id="input-src">
+      <br> clicks:
+      <input type="text" name="clicks" id="input-clicks">
+      <br>
+      <button id='cancel'>Cancel</button>
+      <button id="save">Save</button>
+    </section>
+  </section>
   <script src="js/app.js"></script>
   <script>
   /* let img = document.querySelectorAll('img'); img.forEach(function(e, i, a) { e.addEventListener('click', function() { let clicks = this.parentNode.querySelector(".cat-clicks"); clicks.innerHTML = (clicks.innerHTML - 0) + 1; }, false); });*/

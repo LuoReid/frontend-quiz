@@ -2,7 +2,24 @@
   margin: 3em auto;
 }
 
+body {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .cat-clicks {
   /*display: inline-block;*/
   text-align: center;
+}
+
+.cat-list {
+  width: 50%;
+}
+
+.cat-info {
+  width: 50%;
+}
+
+.hide {
+  display: none;
 }

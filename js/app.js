@@ -22,7 +22,8 @@
       src: 'image/Tassie.jpg',
       clicks: 0
     }],
-    currentCat: null
+    currentCat: null,
+    showAdmin: true,
   };
 
   var octopus = {
@@ -44,6 +45,15 @@
     incrementCounter: function() {
       model.currentCat.clicks++;
       viewCat.render();
+    },
+    openAdmin: function() {
+      model.showAdmin = true;
+    },
+    closeAdmin: function() {
+      model.showAdmin = false;
+    },
+    isShowAdmin: function() {
+      return model.showAdmin;
     }
   };
 
@@ -52,6 +62,10 @@
       this.catName = document.querySelector('.cat-name');
       this.catCount = document.querySelector('.cat-count');
       this.catImg = document.querySelector(".cat-img");
+
+      this.inputName = document.querySelector('#input-name');
+      this.inputSrc = document.querySelector('#input-src');
+      this.inputClicks = document.querySelector('#input-clicks');
 
       this.catImg.addEventListener('click', function() {
         octopus.incrementCounter();
@@ -65,11 +79,45 @@
       this.catName.textContent = currentCat.name;
       this.catCount.textContent = currentCat.clicks;
       this.catImg.src = currentCat.src;
+
+      this.inputName.value = currentCat.name;
+      this.inputSrc.value = currentCat.src;
+      this.inputClicks.value = currentCat.clicks;
     }
   };
   var viewCatList = {
     init: function() {
       this.catList = document.querySelector('.cat-list');
+      this.adminSection = document.querySelector('#admin');
+      this.buttonAdmin = document.querySelector('#btnOpen');
+      this.formAdmin = document.querySelector('#formAdmin');
+
+      this.buttonAdmin.addEventListener('click', function() {
+        this.formAdmin = document.querySelector('#formAdmin');
+        this.formAdmin.setAttribute("class", "");
+
+        //viewCatList.render();
+        viewCat.render();
+      });
+
+      this.buttonCancel = document.querySelector('#cancel');
+      this.buttonCancel.addEventListener('click', function() {
+        this.formAdmin = document.querySelector('#formAdmin');
+        this.formAdmin.setAttribute("class", "hide");
+      });
+
+      this.buttonSave = document.querySelector('#save');
+      this.buttonSave.addEventListener('click', function() {
+        this.formAdmin = document.querySelector('#formAdmin');
+        this.formAdmin.setAttribute("class", "hide");
+        var cat = {};
+        cat.name = document.querySelector('#input-name').value;
+        cat.src = document.querySelector('#input-src').value;
+        cat.clicks = document.querySelector('#input-clicks').value;
+        octopus.setCurrentCat(cat);
+
+        viewCat.render();
+      });
 
       this.render();
     },
@@ -91,6 +139,13 @@
         })(cat));
 
         this.catList.appendChild(elem);
+      }
+
+
+      if (octopus.isShowAdmin) {
+        this.adminSection.setAttribute("class", "");
+      } else {
+        this.adminSection.setAttribute("class", "hide");
       }
 
       //octopus.getCats()
