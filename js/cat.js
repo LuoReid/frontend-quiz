@@ -12,17 +12,4 @@ class cat {
   click() {
     this.clicks++;
   }
-
-  show(e) {
-    e.innerHTML = '';
-    const figcaption = document.createElement('figcaption');
-    figcaption.textContent = `${this.name} : ${this.clicks}`;
-    const img = document.createElement('img');
-    img.src = this.url;
-    img.alt = this.name;
-    const figure = document.createElement('figure');
-    figure.appendChild(figcaption);
-    figure.appendChild(img);
-    e.appendChild(figure);
-  }
 }
