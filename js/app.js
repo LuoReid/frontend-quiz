@@ -1,63 +1,112 @@
 (function() {
 
-  var data = {
-    cats: [],
-    current: {}
+  var model = {
+    cats: [{
+      name: 'back man',
+      src: 'image/back-cat.jpg',
+      clicks: 0
+    }, {
+      name: 'hug-cat',
+      src: 'image/hug-cat.jpg',
+      clicks: 0
+    }, {
+      name: 'peeking man',
+      src: 'image/peeking-cat.jpg',
+      clicks: 0
+    }, {
+      name: 'smiling tiger',
+      src: 'image/smiling-tiger.jpg',
+      clicks: 0
+    }, {
+      name: 'Tassie',
+      src: 'image/Tassie.jpg',
+      clicks: 0
+    }],
+    currentCat: null
   };
 
   var octopus = {
     init: function() {
-      data.cats.push(new cat('back-cat', 'image/back-cat.jpg'));
-      data.cats.push(new cat('hug-cat', 'image/hug-cat.jpg'));
-      data.cats.push(new cat('peeking-cat', 'image/peeking-cat.jpg'));
-      data.cats.push(new cat('smiling tiger', 'image/smiling-tiger.jpg'));
-      data.cats.push(new cat('Tassie', 'image/Tassie.jpg'));
+      model.currentCat = model.cats[0];
 
-      view.init();
+      viewCatList.init();
+      viewCat.init();
     },
     getCats: function() {
-      return data.cats;
+      return model.cats;
     },
     setCurrentCat: function(cat) {
-      data.current = cat;
+      model.currentCat = cat;
     },
     getCurrentCat: function() {
-      return data.current;
+      return model.currentCat;
+    },
+    incrementCounter: function() {
+      model.currentCat.clicks++;
+      viewCat.render();
     }
   };
 
-  var view = {
+  var viewCat = {
     init: function() {
-      document.body.innerHTML = '';
-      const ul = document.createElement('ul');
-      const main = document.createElement('main');
-      octopus.getCats().forEach(function(cat) {
-        const li = document.createElement('li');
-        li.textContent = cat.name;
-        li.addEventListener('click', (function(eCopy) {
-          return function() {
-            eCopy.click();
-            octopus.setCurrentCat(eCopy);
-            view.render();
-          };
-        })(cat));
-        ul.appendChild(li);
+      this.catName = document.querySelector('.cat-name');
+      this.catCount = document.querySelector('.cat-count');
+      this.catImg = document.querySelector(".cat-img");
+
+      this.catImg.addEventListener('click', function() {
+        octopus.incrementCounter();
       });
-      document.body.appendChild(ul).appendChild(main);
+
+      this.render();
     },
     render: function() {
-      const cat = octopus.getCurrentCat();
-      let main = document.querySelector('main');
-      main.innerHTML = '';
-      const figcaption = document.createElement('figcaption');
-      figcaption.textContent = `${cat.name} : ${cat.clicks}`;
-      const img = document.createElement('img');
-      img.src = cat.url;
-      img.alt = cat.name;
-      const figure = document.createElement('figure');
-      figure.appendChild(figcaption);
-      figure.appendChild(img);
-      main.appendChild(figure);
+      var currentCat = octopus.getCurrentCat();
+
+      this.catName.textContent = currentCat.name;
+      this.catCount.textContent = currentCat.clicks;
+      this.catImg.src = currentCat.src;
+    }
+  };
+  var viewCatList = {
+    init: function() {
+      this.catList = document.querySelector('.cat-list');
+
+      this.render();
+    },
+    render: function() {
+      this.catList.innerHTML = '';
+
+      var elem;
+      const cats = octopus.getCats();
+
+      for (const cat of cats) {
+        elem = document.createElement('li');
+        elem.textContent = cat.name;
+
+        elem.addEventListener('click', (function(catCopy) {
+          return function() {
+            octopus.setCurrentCat(catCopy);
+            viewCat.render();
+          };
+        })(cat));
+
+        this.catList.appendChild(elem);
+      }
+
+      //octopus.getCats()
+      /* cats.forEach(function(cat) {
+         elem = document.createElement('li');
+         elem.textContent = cat.name;
+
+         elem.addEventListener('click', (function(catCopy) {
+           return function() {
+             octopus.setCurrentCat(catCopy);
+             viewCat.render();
+           }
+         })(cat));
+
+         this.catList.appendChild(elem);
+       });*/
     }
   };
 

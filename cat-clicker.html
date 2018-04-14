@@ -8,24 +8,16 @@
 </head>
 
 <body>
-  <figure class="cat">
-    <figcaption class="cat-clicks"></figcaption>
-    <img src="image/back-cat.jpg" alt="可爱猫咪">
-  </figure>
-  <figure class="cat">
-    <figcaption class="cat-clicks"></figcaption>
-    <img src="image/peeking-cat.jpg" alt="暗中观察可爱猫咪">
-  </figure>
-  <script src="js/cat.js"></script>
+  <ul class="cat-list"></ul>
+  <main>
+    <figure class="cat">
+      <figcaption><span class="cat-name"></span> : <span class="cat-count"></span></figcaption>
+      <img class="cat-img" src="image/back-cat.jpg" alt="可爱猫咪">
+    </figure>
+  </main>
   <script src="js/app.js"></script>
   <script>
-  let img = document.querySelectorAll('img');
-  img.forEach(function(e, i, a) {
-    e.addEventListener('click', function() {
-      let clicks = this.parentNode.querySelector(".cat-clicks");
-      clicks.innerHTML = (clicks.innerHTML - 0) + 1;
-    }, false);
-  });
+  /* let img = document.querySelectorAll('img'); img.forEach(function(e, i, a) { e.addEventListener('click', function() { let clicks = this.parentNode.querySelector(".cat-clicks"); clicks.innerHTML = (clicks.innerHTML - 0) + 1; }, false); });*/
   </script>
 </body>
 
