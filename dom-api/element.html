@@ -6,26 +6,93 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <style rel="stylesheet">
+    .inner {
+      width: 30%;
+      height: 300px;
+      display: inline-block;
+      outline: solid 1px blue;
+    }
+
+    .outer {
+      font-size: 0;
+    }
+
+    .fixed {
+      width: 200px;
+      display: inline-block;
+      vertical-align: top;
+      height: 300px;
+      outline: solid 1px blue;
+    }
+
+    .auto {
+      height: 300px;
+      outline: solid 1px blue;
+      margin-left: -200px;
+      padding-left: 200px;
+      width: 100%;
+      display: inline-block;
+      vertical-align: top;
+    }
+  </style>
 </head>
 
 <body>
-  <section></section>
-  <div>afasfa<span>sfsackd-span</span></div>
-  <script>
-    var iterator = document.createNodeIterator(document.body, NodeFilter.SHOW_TEXT | NodeFilter.SHOW_COMMENT, null, false);
-    var node;
-    while (node = iterator.nextNode()) {
-      console.log(node);
-    }
+  <section>
+    <p>
+      Please select a shape:
+      <img src="shapes.png" usemap="#shapes"
+        alt="Four shapes are available: a red hollow box, a green circle, a blue triangle, and a yellow four-pointed star.">
+      <map name="shapes">
+        <area shape=rect coords="50,50,100,100"> <!-- the hole in the red box -->
+        <area shape=rect coords="25,25,125,125" href="red.html" alt="Red box.">
+        <area shape=circle coords="200,75,50" href="green.html" alt="Green circle.">
+        <area shape=poly coords="325,25,262,125,388,125" href="blue.html" alt="Blue triangle.">
+        <area shape=poly coords="450,25,435,60,400,75,435,90,450,125,465,90,500,75,465,60" href="yellow.html"
+          alt="Yellow star.">
+      </map>
+    </p>
 
-    var walker = document.createTreeWalker(document.body,NodeFilter.SHOW_ELEMENT,null,false)
-    var node;
-    while(node = walker.nextNode()){
-      if(node.tagName === 'p'){
-        node.nextSibling();
-      }
-      console.log(node);
-    }
+  </section>
+  <div>afasfa<span>sfsackd-span</span></div>
+
+  <section>
+    <div class="outer">
+      <div class="inner"></div>
+      <div class="inner"></div>
+      <div class="inner"></div>
+    </div>
+    <div class="outer">
+      <div class="fixed"></div>
+      <div class="auto"></div>
+    </div>
+
+
+  </section>
+
+  <script>
+    // var iterator = document.createNodeIterator(document.body, NodeFilter.SHOW_TEXT | NodeFilter.SHOW_COMMENT, null, false);
+    // var node;
+    // while (node = iterator.nextNode()) {
+    //   console.log(node);
+    // }
+
+    // var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT, null, false)
+    // var node;
+    // while (node = walker.nextNode()) {
+    //   if (node.tagName === 'p') {
+    //     node.nextSibling();
+    //   }
+    //   console.log(node);
+    // }
+
+    // //parctice
+    // var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT, null, false)
+    // var node;
+    // while (node = walker.nextNode()) {
+    //   console.log(node.tagName);
+    // }
   </script>
 </body>
 
