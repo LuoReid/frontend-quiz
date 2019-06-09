@@ -17,6 +17,15 @@
     while (node = iterator.nextNode()) {
       console.log(node);
     }
+
+    var walker = document.createTreeWalker(document.body,NodeFilter.SHOW_ELEMENT,null,false)
+    var node;
+    while(node = walker.nextNode()){
+      if(node.tagName === 'p'){
+        node.nextSibling();
+      }
+      console.log(node);
+    }
   </script>
 </body>
 
