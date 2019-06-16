@@ -35,10 +35,37 @@
       display: inline-block;
       vertical-align: top;
     }
+
+    .triangle{
+      border-width: 0 30px 30px;
+      border-style: dashed;
+      border-color: transparent transparent #333;
+      color: orange;
+      width: 0;
+      height: 0;
+      margin: 40px auto;
+      box-shadow: 0 0 2px rgba(0,0,0,1);
+      position: relative;
+    }
+    .triangle > div{
+      border-width: 0 28px 28px;
+      border-style: dashed;
+      border-color: transparent transparent orange; 
+      width: 0;
+      height: 0;
+      box-shadow: 0 0 2px rgba(0,0,0,1);
+      top:1px;
+      left: -28px;
+      position: absolute;
+    }
   </style>
 </head>
 
 <body>
+  <section>
+    <div class="triangle"><div></div></div>
+  </section>
+
   <section>
     <p>
       Please select a shape:
