@@ -5,3 +5,13 @@ pre{
 mark{
   background-color: yellow;
 }
+body{
+  background-color:darkgrey;
+}
+.opacity{
+  width: 200px;
+  height: 200px;
+  background-color: #000;
+  border: 1px dashed orange;
+  opacity: .26;
+}
